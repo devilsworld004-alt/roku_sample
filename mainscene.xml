@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MainScene" extends="Scene">
+    <interface>
+        <field id="internetStatus" type="boolean" />
+        <field id="startNetworkCall" type="boolean" alwaysNotify="true" onChange="makeConfigAPICall" />
+        <field id="appExit" type="boolean" alwaysNotify="true" />
+        <field id="setToastData" type="assocarray" alwaysNotify="true" onChange="setToastMessage" />
+        <field id="showHeader" type="boolean" alwaysNotify="true" alias="header.visible" />
+        <field id="showSpinner" type="boolean" value="false" alwaysNotify="true" alias="spinner.showSpinner" />
+        <field id="focusedFirstRow" type="boolean" value = "false" alwaysNotify = "true" />
+
+        <field id="deeplink" type="assocArray" />
+        <field id="adContent" type="assocArray" />
+        <field id="selectedMenu" type="node" />
+        <function name="resetActiveMenuStatus" />
+        <function name="setActiveMenuStatus" />
+        <function name="setFocusToMenu" />
+        <function name="notifySuccessLogOutResponse" />
+        <function name="onErrorPopupRetry" />
+        <function name="onErrorPopupBack" />
+        <function name="sendAnalyticsEventData" />
+    </interface>
+
+    <script type="text/brightscript" uri="MainScene.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Helpers/BackStackManager.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Helpers/Registry.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Utility/Utils.brs" />
+    <script type="text/brightscript" uri="pkg:/source/API/ContentService.brs" />
+    <script type="text/brightscript" uri="pkg:/source/API/AuthService.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Helpers/AnalyticsManager.brs" />
+    <script type="text/brightscript" uri="pkg:/source/API/ConfigurationService.brs" />
+    <script type="text/brightscript" uri="pkg:/source/API/UserService.brs" />
+
+    <children>
+        <AppBackground id="app_bg" showBackgroundImage="false"/>
+        <Group id="screenContainer" />
+
+        <Rectangle id="header" visible="true" width="1920" height="120" translation="[0, 45]" color="#00000000" >
+            <Poster id="appLogo" uri="pkg:/images/app_icon.png" />
+            <Menu id="menu" />
+        </Rectangle>
+        
+        <LayoutGroup vertAlignment="center" horizAlignment="center" translation="[960, 540]">
+            <Spinner id="spinner" />
+        </LayoutGroup>
+
+        <Toast id="Toast" />
+    </children>
+</component>
